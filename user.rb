@@ -12,4 +12,34 @@ class User
     @balance = START_BANK
   end
 
+  def take_cards(cards)
+    @cards.concat(cards)
+  end
+
+
+  def show_cards
+    @cards.each { |card|  print "#{card.value}#{card.suit}" }
+  end
+
+  def show_cards_face
+    @cards.each do |card|
+      print "#{card.value}#{card.suit}", " "
+    end
+  end
+
+  def show_cards_back
+    @cards.each { |card|  print "*", " " }
+  end
+
+
+  def show_curent_balance
+    @balance
+  end
+
+  def make_bet
+    @balance -= BET_AMOUNT
+    BET_AMOUNT
+  end
+
+
 end

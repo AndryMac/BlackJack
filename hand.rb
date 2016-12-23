@@ -13,8 +13,8 @@ class Hand
   end
 
 
-  def deal_cards(count = 3)
-   p @cards = @cards.sample(count).each { |value| @cards.delete(value)}
+  def deal_cards(count = 2)
+    @cards.sample(count).each { |value| @cards.delete(value)}
   end
 
   def del_one_card
