@@ -14,6 +14,12 @@ class Game
   end
 
   def play_game
+    show_info
+    player_move
+
+  end
+
+  def show_info
     print "#{@player.name}: "
     show_cards_face
     puts "Сумма очков - #{show_score_cards}"
@@ -21,6 +27,22 @@ class Game
     show_cards_back
     puts
   end
+
+
+
+  def player_move
+    command = "c"
+    @player.during_player_turn(command, @hand)
+
+  end
+
+  def diller_move
+    sleep(3)
+    puts "Надо подумать"
+    puts "Мой ход"
+  end
+
+
 
   def deal_cards
     @player.take_cards(@hand.deal_cards)

@@ -41,5 +41,17 @@ class User
     BET_AMOUNT
   end
 
+  def clear_cards
+    @cards = []
+  end
+
+  def card_limit?
+    @cards.size == MAX_COUNT_CARDS
+  end
+
+  def can_open_cards?(command)
+    command == "o"
+  end
+
 
 end
