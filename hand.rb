@@ -67,8 +67,12 @@ class Hand
     WIN_SCORE == score
   end
 
-  def score_difference(score)
-    (WIN_SCORE - score)
+  def score_bust(score)
+    WIN_SCORE < score
+  end
+
+  def player_win?(player_score, diller_score)
+    win_score?(player_score) || player_score > diller_score
   end
 end
 

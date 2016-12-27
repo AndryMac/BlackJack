@@ -41,6 +41,10 @@ class User
     BET_AMOUNT
   end
 
+  def take_money(bank)
+    @balance += bank
+  end
+
   def clear_cards
     @cards = []
   end
@@ -52,6 +56,5 @@ class User
   def can_open_cards?(command)
     command == "o"
   end
-
 
 end

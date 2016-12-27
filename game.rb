@@ -14,17 +14,19 @@ class Game
   end
 
   def play_game
+
     show_info
     player_move
+    determine_winner
 
   end
 
   def show_info
     print "#{@player.name}: "
     show_cards_face
-    puts "Сумма очков - #{show_score_cards}"
+    puts "Сумма очков - #{show_score_cards_player}"
     print "#{@diller.name}: "
-    show_cards_back
+    show_cards_dil
     puts
   end
 
@@ -33,7 +35,7 @@ class Game
   def player_move
     command = "c"
     @player.during_player_turn(command, @hand)
-
+    show_info
   end
 
   def diller_move
@@ -41,6 +43,8 @@ class Game
     puts "Надо подумать"
     puts "Мой ход"
   end
+
+
 
 
 
@@ -54,8 +58,12 @@ class Game
     @bank += @diller.make_bet
   end
 
-  def show_score_cards
+  def show_score_cards_player
     @hand.score(@player.cards)
+  end
+
+  def show_score_cards_diller
+    @hand.score(@diller.cards)
   end
 
   def show_curent_balance
@@ -77,6 +85,27 @@ class Game
 
   def show_cards_back
     @diller.show_cards_back
+  end
+
+
+
+
+  def determine_winner
+    player_score = show_score_cards_player
+    diller_score = show_score_cards_diller
+    if player_score == diller_score
+      @bank = @bank / 2
+      @player.take_money(@bank)
+      @diller.take_money(@bank)
+      puts "Ничья"
+    elsif @hand.player_win?(player_score, diller_score)
+      @player.take_money(@bank)
+      puts "#{@player.name} - победил"
+    else
+      @diller.take_money(@bank)
+      puts "#{@player.name} - проиграл"
+    end
+
   end
 
 end
