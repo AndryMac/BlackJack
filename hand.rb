@@ -67,12 +67,32 @@ class Hand
     WIN_SCORE == score
   end
 
-  def score_bust(score)
-    WIN_SCORE < score
+  def player_lose?(player_score)
+    player_score > 21
   end
 
-  def player_win?(player_score, diller_score)
-    win_score?(player_score) || player_score > diller_score
+  def diller_lose?(diller_score)
+    diller_score > 21
+  end
+
+  def player_win_21?(player_score)
+    player_score == 21
+  end
+
+  def diller_win_21?(diller_score)
+    diller_score == 21
+  end
+
+  def player_win_score(player_score, diller_score)
+    if( player_score < 21) && (diller_score < 21)
+      player_score > diller_score
+    end
+  end
+
+  def diller_win_score(player_score, diller_score)
+    if( player_score < 21) && (diller_score < 21)
+      player_score < diller_score
+    end
   end
 end
 

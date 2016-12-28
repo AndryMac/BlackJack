@@ -8,16 +8,17 @@ class Player < User
       show_cards_face
       puts
     elsif can_open_cards?(command)
+      open_cards
+
     end
 
   end
 
-  def can_pass?(command)
-    command == "p"
+
+  def can_open_cards?(command)
+    command == "o"
   end
 
-  def can_take_card?(command)
-    command == "c"
-  end
+
 
 end

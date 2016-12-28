@@ -4,12 +4,17 @@ class User
   MAX_COUNT_CARDS = 3
   BET_AMOUNT = 10
 
-  attr_reader :name, :cards, :balance
+  attr_reader :name, :cards, :balance, :opened_cards
 
   def initialize(name)
     @name = name
     @cards = []
     @balance = START_BANK
+    @opened_cards = false
+  end
+
+  def positive_balance
+    @balance == 0
   end
 
   def take_cards(cards)
@@ -29,6 +34,10 @@ class User
 
   def show_cards_back
     @cards.each { |card|  print "*", " " }
+  end
+
+  def open_cards
+    @opened_cards = true
   end
 
 
@@ -53,8 +62,13 @@ class User
     @cards.size == MAX_COUNT_CARDS
   end
 
-  def can_open_cards?(command)
-    command == "o"
+
+  def can_pass?(command)
+    command == "p"
+  end
+
+  def can_take_card?(command)
+    command == "c"
   end
 
 end
